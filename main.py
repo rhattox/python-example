@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request
-
 from routes.register import register_blueprint
 
 # Create the Flask app
