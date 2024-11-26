@@ -1,0 +1,19 @@
+volumes:
+  db_volume:
+services:
+  db:
+    image: postgres:17
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: test
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
