@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models.user import User
+from database.register_user import register_user
 
 # Create a Blueprint for register
 register_blueprint = Blueprint('register', __name__)
@@ -15,6 +15,6 @@ def register():
     print(data['email'])
     print(data['password'])
 
-    user = User(data['name'], data['email'], data['password'])
+    register_user(data['name'], data['email'], data['password'])
 
     return jsonify(data), 200
