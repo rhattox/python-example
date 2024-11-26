@@ -8,6 +8,7 @@ services:
       - 5432:5432
     volumes:
       - db_volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root

@@ -32,5 +32,3 @@ finally:
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed.")
-
-init
