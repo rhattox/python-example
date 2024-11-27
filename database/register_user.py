@@ -1,8 +1,8 @@
 import psycopg2
-from database_configs import db_config
+from database.database_configs import db_config
 
 
-def register_user(username, email, password):
+def register_user(user):
     try:
         # Establish the connection
         connection = psycopg2.connect(**db_config)
@@ -11,9 +11,12 @@ def register_user(username, email, password):
         cursor = connection.cursor()
 
         # Execute a SQL query
-        cursor.execute("INSERT INTO user_table (username, email, password) VALUES (%s, %s, %s);")
-
-
+        cursor.execute(
+            "INSERT INTO users_table (name, email, password) VALUES (%s, %s, %s);",
+            (user.name, user.email, user.password)
+        )
+        connection.commit()
+        print("User successfully registered!")
     except (Exception, psycopg2.Error) as error:
         print(f"Error while connecting to PostgreSQL: {error}")
     finally:
